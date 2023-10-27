@@ -3,10 +3,16 @@ const pipe = document.querySelector('.pipe');
 const cloud = document.querySelector('.cloud')
 const gameover = document.querySelector('.game-over')
 
+let score = 0;
 const jump = () => {
     mario.classList.add('jump');
     setTimeout(()=>{
         mario.classList.remove('jump')
+
+        if(pipe.offsetLeft >= 1600){
+            score++;
+            document.getElementById('score-display').textContent = `Score: ${score}`;
+        }
     },500);
 }
 
@@ -38,6 +44,4 @@ const loop = setInterval(()=>{
 document.addEventListener('keydown', function(event) {
     if(event.key == " " || event.key == "Spacebar")
         jump();
-    if(event.key == "Enter")
-        restart();
 });
